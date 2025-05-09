@@ -1,0 +1,39 @@
+
+body { 
+  margin: 0; 
+  background: #e0e0e0; 
+  overflow: hidden; 
+}
+
+
+canvas {
+  display: block;
+}
+
+.visualizer-container,
+.canvas-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.dg { 
+  z-index: 10; 
+}
+
+
+/* Texto multilínea para editar customText */
+textarea#customTextArea {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 300px;
+  height: 100px;
+  z-index: 11;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid #444;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
