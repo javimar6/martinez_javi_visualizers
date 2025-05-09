@@ -1,0 +1,121 @@
+@import "../css/style_grid.css";
+
+
+@font-face {
+    font-family: "Cirka";
+    src: url("../fonts/PPCirka-Bold.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neue";
+    src: url("../fonts/PPNeueMachina-InktrapRegular.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Neue Ultrabold";
+    src: url("../fonts/PPNeueMachina-InktrapUltrabold.otf") format("opentype");
+    font-weight: 800;
+    font-style: bold;
+    font-display: swap;
+}
+
+/* VARIABLES */
+
+:root {
+
+    /* TYPOGRAPHY */
+    --font: "Helvetica Neue", sans-serif;
+    --font-cirka: "Cirka", sans-serif;
+    --font-neue: "Neue", sans-serif;
+    --font-neue-ultrabold: "Neue Ultrabold", sans-serif;
+    --fs: 16px;
+    --fs-l: calc(var(--fs) * 1.5);
+    --fs-s: calc(var(--fs) * 0.75);
+
+    /* COLORS */
+    --color-black: #1e1e1f;
+    --color-white: #e5e5e4;
+}
+
+
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* GENERAL */
+
+::selection {
+    background-color: #1e1e1f;
+    color: #e5e4e4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+
+body {
+    margin: auto;
+    width: 100vw;
+    padding: 0 1.5em;
+    font-family: var(--font);
+    color: var(--color-black);
+    background-color: var(--color-white);
+    font-size: var(--fs); 
+}
+
+/* ——— Cursor por capas: inversión debajo + negro encima ——— */
+html, body {
+    cursor: none;
+    
+    a{
+        cursor: none;
+    }
+  }
+  
+  #custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    /* 1) capa que invierte todo lo que está debajo del cursor */
+    background-color: black;
+    mix-blend-mode: difference;
+    mask: url('../img/puntero.svg') center/contain no-repeat;
+    -webkit-mask: url('../img/puntero.svg') center/contain no-repeat;
+    transform: translate(-50%, -50%);
+    z-index: 9998; /* por debajo del icono negro */
+  }
+  
+  #custom-cursor-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    /* 2) capa que dibuja el icono negro encima */
+    background-color: white;
+    mask: url('../img/puntero.svg') center/contain no-repeat;
+    -webkit-mask: url('../img/puntero.svg') center/contain no-repeat;
+    transform: translate(0, 0);
+    z-index: 9999;
+  }
+  

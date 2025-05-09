@@ -1,0 +1,179 @@
+
+
+/* Logo SVG */
+.logo-svg {
+  width: clamp(55rem, 20vw, 25rem);       /* tamaño base */
+  height: auto;
+  transform-origin: center center;        /* punto de anclaje para el escalado */
+  transform: scale(1);                    /* escala inicial */
+  transition: transform 1s ease;          /* animamos solo transform */
+  z-index: 50;                            /* Mantén el z-index alto para que el logo se vea por encima */
+}
+
+/* Home */
+.section-home {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 1s ease;                /* solo animamos top aquí */
+  z-index: 10;
+}
+
+.section-home.index-active {
+  top: 85%;
+}
+
+.section-home.about-active {
+  top: 2%;
+}
+
+/* Cuando se activa el índice (logo pequeño) */
+.section-home.index-active .logo-svg {
+  transform: scale(0.5);                  /* ajusta este factor para hacerlo más o menos pequeño */
+}
+
+/* Cuando se activa “About” (logo grande de nuevo) */
+.section-home.about-active .logo-svg {
+  transform: scale(1.2);                  /* ajusta este factor para hacerlo más grande que el original */
+}
+
+/* Menu */
+.menu-container {
+  position: fixed;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 2em;
+  z-index: 100;
+  font-family: var(--font-neue);
+}
+
+.menu-item-text {
+  font-family: var(--font-neue);
+  /* cursor: pointer; */
+}
+
+.menu-item-text.active {
+  font-family: var(--font-neue-ultrabold);
+}
+
+/* Index */
+.section-index {
+  position: relative;
+  z-index: 20;
+  gap: 2em;
+  margin-bottom: 4em;
+  opacity: 0;
+  transition: top 1s ease, opacity 1.5s ease;
+  top: -3vh;
+  font-family: var(--font-neue-ultrabold);
+}
+
+
+.section-index.active {
+  opacity: 1;
+  top: 2vh;
+}
+
+.section-index-text {
+  position: static;
+}
+
+/* Descriptions */
+.section-index-description > div {
+  display: none;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(60%, 700px);
+  padding: 1em;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.section-index-description > div.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Animación de palabras */
+.section-index-description p span {
+  opacity: 0;
+  display: inline-block;
+  transform: translateX(-10px);
+  animation: wordFadeIn 0.8s forwards;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+@keyframes wordFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* Contenedor de Video */
+.section-index-video {
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65vw;
+  max-width: 650px;
+  height: auto;
+  background-color: var(--color-black);
+  opacity: 0;
+  
+  /* visibility: hidden; */
+  pointer-events: none;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  z-index: 10;
+}
+
+.section-index-text:hover .section-index-video {
+  opacity: 1;
+  visibility: visible;
+  z-index: -5;            /* Aseguramos que el video sea visible cuando se activa el hover */
+}
+
+
+
+/* About */
+.section-about {
+  font-size: var(--fs-l);
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 700px);
+  padding: 2em;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  text-align: center;
+}
+
+.section-about.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section-about p span {
+  opacity: 0;
+  display: inline-block;
+  transform: translateX(-10px);
+  animation: wordFadeIn 2.5s forwards;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
